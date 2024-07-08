@@ -64,9 +64,9 @@ pipeline{
                 }
             }
         }
-        stage("TRIVY"){
+        stage("TRIVY is Image Scanning"){
             steps{
-                sh "trivy image ajithyadav/zomato:latest > trivy.txt" 
+                sh "trivy image ajithyadav/zomato:latest >trivy.txt" 
             }
         }
         stage('Deploy to container'){
