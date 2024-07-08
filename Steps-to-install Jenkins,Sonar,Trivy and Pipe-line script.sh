@@ -299,20 +299,20 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build -t zomato ."
-                       sh "docker tag zomato thanish/zomato:latest "
-                       sh "docker push thanish/zomato:latest "
+                       sh "docker tag zomato ajithyadav/zomato:latest "
+                       sh "docker push ajithyadav/zomato:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image thanish/zomato:latest > trivy.txt" 
+                sh "trivy image ajithyadav/zomato:latest > trivy.txt" 
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name zomato -p 3000:3000 thanish/zomato:latest'
+                sh 'docker run -d --name zomato -p 3000:3000 ajithyadav/zomato:latest'
             }
         }
     }
